@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">Football Match</string>
+    <string name="last_match">Last Match</string>
+    <string name="next_match">Next Match</string>
+    <string name="favorite">Favorite</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="vs">vs</string>
+    <string name="home_logo_badge">Home Logo Badge</string>
+    <string name="away_logo_badge">Away Logo Badge</string>
+    <string name="dummy_date">Sun, 26 Sep 2018</string>
+    <string name="dummy_home_team">Man Utd</string>
+    <string name="dummy_away_team">Man City</string>
+    <string name="dummy_score_away">4</string>
+    <string name="dummy_score_home">5</string>
+    <string name="goals">Goals</string>
+    <string name="dummy_desc">Lorem ipsum dolor sit amet espedicing acid.</string>
+    <string name="shots">Shots</string>
+    <string name="lineups">Lineups</string>
+    <string name="goal_keeper">Goal Keeper</string>
+    <string name="dummy_desc_short">lorem ipsum</string>
+    <string name="defense">Defense</string>
+    <string name="midfield">Midfield</string>
+    <string name="forward">Forward</string>
+    <string name="substitutes">Substitutes</string>
+</resources>
