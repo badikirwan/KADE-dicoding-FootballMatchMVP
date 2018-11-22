@@ -24,4 +24,6 @@
     <string name="midfield">Midfield</string>
     <string name="forward">Forward</string>
     <string name="substitutes">Substitutes</string>
+    <string name="match_detail">Match Details</string>
+    <string name="empty_data">Empty Data</string>
 </resources>

@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.badikirwan.dicoding.footballmatch.R
 import com.badikirwan.dicoding.footballmatch.R.id.*
+import com.badikirwan.dicoding.footballmatch.view.favoriteevent.FavoriteEventFragment
 import com.badikirwan.dicoding.footballmatch.view.lastmatch.LastLastMatchFragment
 import com.badikirwan.dicoding.footballmatch.view.nextmatch.NextMatchFragment
 import kotlinx.android.synthetic.main.activity_main.*
@@ -25,7 +26,7 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 menu_favorite -> {
-
+                    loadFavoriteFragment(savedInstanceState)
                 }
             }
             true
@@ -45,6 +46,14 @@ class MainActivity : AppCompatActivity() {
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
                 .replace(R.id.main_container, NextMatchFragment(), NextMatchFragment::class.java.simpleName)
+                .commit()
+        }
+    }
+
+    private fun loadFavoriteFragment(savedInstanceState: Bundle?) {
+        if (savedInstanceState == null) {
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.main_container, FavoriteEventFragment(), FavoriteEventFragment::class.java.simpleName)
                 .commit()
         }
     }

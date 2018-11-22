@@ -10,8 +10,10 @@ import android.view.View
 import android.view.ViewGroup
 import com.badikirwan.dicoding.footballmatch.R
 import com.badikirwan.dicoding.footballmatch.adapter.MatchAdapter
-import com.badikirwan.dicoding.footballmatch.api.ApiClient
+import com.badikirwan.dicoding.footballmatch.api.ApiRepository
 import com.badikirwan.dicoding.footballmatch.model.EventItem
+import com.badikirwan.dicoding.footballmatch.view.detail.DetailActivity
+import com.google.gson.Gson
 import kotlinx.android.synthetic.main.fragment_last_match.*
 
 class LastLastMatchFragment : Fragment(), LastMatchView {
@@ -30,8 +32,11 @@ class LastLastMatchFragment : Fragment(), LastMatchView {
         recyclerView = view.findViewById(R.id.recycle_last_match)
         recyclerView.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
 
-        presenter = LastMatchPresenter(this, ApiClient)
-        adapter = MatchAdapter(data)
+        presenter = LastMatchPresenter(this, ApiRepository(), Gson())
+        adapter = MatchAdapter(data) { eventItem ->
+            startActivity(context?.let { DetailActivity.newIntent(it, eventItem) })
+        }
+
         recyclerView.adapter = adapter
 
         return view
@@ -48,7 +53,7 @@ class LastLastMatchFragment : Fragment(), LastMatchView {
     }
 
     override fun hideLoading() {
-        prog_last_match.visibility = View.GONE
+        prog_last_match.visibility = View.INVISIBLE
         recycle_last_match.visibility = View.VISIBLE
     }
 

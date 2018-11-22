@@ -1,30 +1,27 @@
 package com.badikirwan.dicoding.footballmatch.view.lastmatch
 
-import android.util.Log
-import com.badikirwan.dicoding.footballmatch.api.ApiClient
+import com.badikirwan.dicoding.footballmatch.api.ApiRepository
+import com.badikirwan.dicoding.footballmatch.api.TheSportDBApi
 import com.badikirwan.dicoding.footballmatch.model.EventItemResponse
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import com.badikirwan.dicoding.footballmatch.util.CoroutineContextProvider
+import com.google.gson.Gson
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class LastMatchPresenter(private val viewLast: LastMatchView,
-                         private val apiClient: ApiClient) {
+                         private val apiRepository: ApiRepository,
+                         private val gson: Gson,
+                         private val context: CoroutineContextProvider = CoroutineContextProvider()) {
 
     fun getEventLastMatch(id: String) {
         viewLast.showLoading()
-        apiClient.create().getPastMatch(id).enqueue(object : Callback<EventItemResponse> {
+        GlobalScope.launch(context.main) {
+            val data = gson.fromJson(apiRepository
+                .doRequest(TheSportDBApi.getPastMatch(id)).await(),
+                EventItemResponse::class.java)
 
-            override fun onFailure(call: Call<EventItemResponse>, t: Throwable) {
-                Log.e("Errornya :", "${t.message}")
-                viewLast.hideLoading()
-            }
-
-            override fun onResponse(call: Call<EventItemResponse>, response: Response<EventItemResponse>) {
-                if (response.isSuccessful) {
-                    viewLast.showMatchEvent(response.body()?.events!!)
-                }
-                viewLast.hideLoading()
-            }
-        })
+            viewLast.hideLoading()
+            viewLast.showMatchEvent(data.events)
+        }
     }
 }
