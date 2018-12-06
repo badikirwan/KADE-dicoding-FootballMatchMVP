@@ -14,8 +14,8 @@ import com.badikirwan.dicoding.footballmatch.adapter.MatchAdapter
 import com.badikirwan.dicoding.footballmatch.model.EventItem
 import com.badikirwan.dicoding.footballmatch.model.Team
 import com.badikirwan.dicoding.footballmatch.view.detail.DetailActivity
-import com.badikirwan.dicoding.footballmatch.view.favoriteevent.FavoritePresenter
-import com.badikirwan.dicoding.footballmatch.view.favoriteevent.FavoriteView
+import com.badikirwan.dicoding.footballmatch.view.favorite.FavoritePresenter
+import com.badikirwan.dicoding.footballmatch.view.favorite.FavoriteView
 import kotlinx.android.synthetic.main.fragment_favorite_match.*
 
 class FavoriteMatchFragment : Fragment(), FavoriteView {

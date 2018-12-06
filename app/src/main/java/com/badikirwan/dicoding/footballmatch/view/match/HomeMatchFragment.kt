@@ -1,4 +1,4 @@
-package com.badikirwan.dicoding.footballmatch.view.main
+package com.badikirwan.dicoding.footballmatch.view.match
 
 
 import android.os.Bundle
@@ -7,8 +7,9 @@ import android.support.v7.app.AppCompatActivity
 import android.view.*
 
 import com.badikirwan.dicoding.footballmatch.R
-import com.badikirwan.dicoding.footballmatch.adapter.MatchEventPagerAdapter
-import com.badikirwan.dicoding.footballmatch.view.detail.DetailActivity
+import com.badikirwan.dicoding.footballmatch.adapter.PagerAdapter
+import com.badikirwan.dicoding.footballmatch.view.match.lastmatch.LastMatchFragment
+import com.badikirwan.dicoding.footballmatch.view.match.nextmatch.NextMatchFragment
 import com.badikirwan.dicoding.footballmatch.view.searchmatch.SearchMatchActivity
 import kotlinx.android.synthetic.main.fragment_home_match.*
 import kotlinx.android.synthetic.main.fragment_home_match.view.*
@@ -23,7 +24,10 @@ class HomeMatchFragment : Fragment() {
         // Inflate the layout for this fragment
         val view =  inflater.inflate(R.layout.fragment_home_match, container, false)
         setHasOptionsMenu(true)
-        view.view_pager.adapter = MatchEventPagerAdapter(childFragmentManager)
+        view.view_pager.adapter = PagerAdapter(childFragmentManager, mapOf(
+            getString(R.string.last_match) to LastMatchFragment(),
+            getString(R.string.next_match) to NextMatchFragment()
+        ))
         view.tab_layout.setupWithViewPager(view.view_pager)
 
         return view

@@ -26,7 +26,6 @@ class MatchAdapter(private val items: List<EventItem>,
        holder.bindItem(items[position], listener)
     }
 
-
     class ViewHolder(override val containerView: View) :
         RecyclerView.ViewHolder(containerView), LayoutContainer {
 

@@ -1,4 +1,4 @@
-package com.badikirwan.dicoding.footballmatch.view.favoriteevent
+package com.badikirwan.dicoding.footballmatch.view.favorite
 
 import com.badikirwan.dicoding.footballmatch.model.EventItem
 import com.badikirwan.dicoding.footballmatch.model.Team

@@ -1,4 +1,4 @@
-package com.badikirwan.dicoding.footballmatch.view.lastmatch
+package com.badikirwan.dicoding.footballmatch.view.match.lastmatch
 
 import com.badikirwan.dicoding.footballmatch.model.EventItem
 import com.badikirwan.dicoding.footballmatch.model.LeagueResponse

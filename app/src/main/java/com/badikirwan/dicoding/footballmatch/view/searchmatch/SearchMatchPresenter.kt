@@ -2,7 +2,7 @@ package com.badikirwan.dicoding.footballmatch.view.searchmatch
 
 import com.badikirwan.dicoding.footballmatch.api.ApiRepository
 import com.badikirwan.dicoding.footballmatch.api.TheSportDBApi
-import com.badikirwan.dicoding.footballmatch.model.EventItemResponse
+import com.badikirwan.dicoding.footballmatch.model.EventItemSearchResponse
 import com.badikirwan.dicoding.footballmatch.util.CoroutineContextProvider
 import com.google.gson.Gson
 import kotlinx.coroutines.GlobalScope
@@ -19,10 +19,10 @@ class SearchMatchPresenter(private val view: SearchMatchView,
         GlobalScope.launch(context.main) {
             val data = gson.fromJson(apiRepository
                     .doRequest(TheSportDBApi.getSearchMatch(query)).await(),
-                EventItemResponse::class.java)
+                EventItemSearchResponse::class.java)
 
             view.hideLoading()
-            view.showSearchMatch(data.events)
+            view.showSearchMatch(data.event)
         }
     }
 

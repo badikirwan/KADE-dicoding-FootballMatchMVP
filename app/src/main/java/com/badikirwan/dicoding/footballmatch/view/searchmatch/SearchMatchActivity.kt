@@ -46,15 +46,21 @@ class SearchMatchActivity : AppCompatActivity(), SearchMatchView {
         val searchMenu = menu?.findItem(R.id.search_menu_item)
         val searchView = searchMenu?.actionView as SearchView?
 
+        searchView?.queryHint = "Search by Teams"
         searchView?.isIconified = false
         searchView?.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+
             override fun onQueryTextSubmit(query: String?): Boolean {
-                presenter.getSearchMatch(query)
+                presenter.getSearchMatch(query.toString())
                 return true
             }
 
-            override fun onQueryTextChange(query: String): Boolean {
-                presenter.getSearchMatch(query)
+            override fun onQueryTextChange(query: String?): Boolean {
+                if (query.toString().isEmpty()) {
+                    rv_match_search.visibility = View.INVISIBLE
+                } else {
+                    presenter.getSearchMatch(query.toString())
+                }
                 return true
             }
         })
@@ -76,5 +82,10 @@ class SearchMatchActivity : AppCompatActivity(), SearchMatchView {
         datas.clear()
         datas.addAll(data)
         adapter.notifyDataSetChanged()
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 }

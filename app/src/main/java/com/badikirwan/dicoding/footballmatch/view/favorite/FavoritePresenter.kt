@@ -1,4 +1,4 @@
-package com.badikirwan.dicoding.footballmatch.view.favoriteevent
+package com.badikirwan.dicoding.footballmatch.view.favorite
 
 import android.content.Context
 import com.badikirwan.dicoding.footballmatch.db.database

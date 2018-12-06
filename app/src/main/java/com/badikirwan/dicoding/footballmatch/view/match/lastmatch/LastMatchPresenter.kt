@@ -1,4 +1,4 @@
-package com.badikirwan.dicoding.footballmatch.view.nextmatch
+package com.badikirwan.dicoding.footballmatch.view.match.lastmatch
 
 import com.badikirwan.dicoding.footballmatch.api.ApiRepository
 import com.badikirwan.dicoding.footballmatch.api.TheSportDBApi
@@ -9,33 +9,32 @@ import com.google.gson.Gson
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
-class NextMatchPresenter(private val view: NextMatchView,
+class LastMatchPresenter(private val viewLast: LastMatchView,
                          private val apiRepository: ApiRepository,
                          private val gson: Gson,
                          private val context: CoroutineContextProvider = CoroutineContextProvider()) {
 
-    fun getNextEventMatch(id: String) {
-        view.showLoading()
+    fun getEventLastMatch(id: String) {
+        viewLast.showLoading()
         GlobalScope.launch(context.main) {
             val data = gson.fromJson(apiRepository
-                .doRequest(TheSportDBApi.getNextMatch(id)).await(),
+                .doRequest(TheSportDBApi.getPastMatch(id)).await(),
                 EventItemResponse::class.java)
 
-            view.hideLoading()
-            view.showNextEventMatch(data.events)
+            viewLast.hideLoading()
+            viewLast.showMatchEvent(data.events)
         }
     }
 
     fun getLeague() {
-        view.showLoading()
+        viewLast.showLoading()
         GlobalScope.launch(context.main){
             val data = gson.fromJson(apiRepository
                 .doRequest(TheSportDBApi.getLeague()).await(),
                 LeagueResponse::class.java)
 
-            view.hideLoading()
-            view.showListLeague(data)
+            viewLast.hideLoading()
+            viewLast.showListLeague(data)
         }
     }
-
 }

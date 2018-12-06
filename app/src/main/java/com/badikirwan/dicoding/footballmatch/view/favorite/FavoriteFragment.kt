@@ -1,10 +1,9 @@
-package com.badikirwan.dicoding.footballmatch.view.favoriteevent
+package com.badikirwan.dicoding.footballmatch.view.favorite
 
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -14,7 +13,6 @@ import com.badikirwan.dicoding.footballmatch.R
 import com.badikirwan.dicoding.footballmatch.adapter.MatchAdapter
 import com.badikirwan.dicoding.footballmatch.adapter.PagerAdapter
 import com.badikirwan.dicoding.footballmatch.model.EventItem
-import com.badikirwan.dicoding.footballmatch.view.detail.DetailActivity
 import com.badikirwan.dicoding.footballmatch.view.favorite.match.FavoriteMatchFragment
 import com.badikirwan.dicoding.footballmatch.view.favorite.team.FavoriteTeamFragment
 import kotlinx.android.synthetic.main.fragment_favorite_event.*

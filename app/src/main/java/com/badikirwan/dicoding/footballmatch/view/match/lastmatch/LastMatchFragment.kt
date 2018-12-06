@@ -1,4 +1,4 @@
-package com.badikirwan.dicoding.footballmatch.view.lastmatch
+package com.badikirwan.dicoding.footballmatch.view.match.lastmatch
 
 
 import android.os.Bundle

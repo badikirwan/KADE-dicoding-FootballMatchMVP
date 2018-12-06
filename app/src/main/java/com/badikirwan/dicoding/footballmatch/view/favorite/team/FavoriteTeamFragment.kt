@@ -13,8 +13,8 @@ import com.badikirwan.dicoding.footballmatch.R
 import com.badikirwan.dicoding.footballmatch.adapter.TeamAdapter
 import com.badikirwan.dicoding.footballmatch.model.EventItem
 import com.badikirwan.dicoding.footballmatch.model.Team
-import com.badikirwan.dicoding.footballmatch.view.favoriteevent.FavoritePresenter
-import com.badikirwan.dicoding.footballmatch.view.favoriteevent.FavoriteView
+import com.badikirwan.dicoding.footballmatch.view.favorite.FavoritePresenter
+import com.badikirwan.dicoding.footballmatch.view.favorite.FavoriteView
 import com.badikirwan.dicoding.footballmatch.view.teamdetails.TeamDetailsActivity
 import kotlinx.android.synthetic.main.fragment_favorite_team.*
 

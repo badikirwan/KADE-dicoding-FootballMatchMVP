@@ -1,4 +1,4 @@
-package com.badikirwan.dicoding.footballmatch.view.lastmatch
+package com.badikirwan.dicoding.footballmatch.view.match.nextmatch
 
 import com.badikirwan.dicoding.footballmatch.api.ApiRepository
 import com.badikirwan.dicoding.footballmatch.api.TheSportDBApi
@@ -10,18 +10,18 @@ import com.nhaarman.mockito_kotlin.verify
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import org.junit.Before
-import org.junit.Test
 
+import org.junit.Test
 import org.mockito.Mock
 import org.mockito.Mockito.`when`
 import org.mockito.MockitoAnnotations
 
-class LastMatchPresenterTest {
+class NextMatchPresenterTest {
 
-    private lateinit var presenter: LastMatchPresenter
+    private lateinit var presenter: NextMatchPresenter
 
     @Mock
-    private lateinit var view: LastMatchView
+    private lateinit var view: NextMatchView
     @Mock
     private lateinit var apiRepository: ApiRepository
     @Mock
@@ -30,27 +30,26 @@ class LastMatchPresenterTest {
     @Before
     fun setUp() {
         MockitoAnnotations.initMocks(this)
-        presenter = LastMatchPresenter(view, apiRepository, gson, TestContextProvider())
+        presenter = NextMatchPresenter(view, apiRepository, gson, TestContextProvider())
     }
 
     @Test
-    fun `menggambil data last match event`() {
+    fun `mengambil data next match event`() {
         val event: MutableList<EventItem> = mutableListOf()
-        val response =  EventItemResponse(event)
+        val response = EventItemResponse(event)
         val id = "4328"
 
         GlobalScope.launch {
             `when`(gson.fromJson(apiRepository
-                .doRequest(TheSportDBApi.getPastMatch(id)).await(),
+                .doRequest(TheSportDBApi.getNextMatch(id)).await(),
                 EventItemResponse::class.java
             )).thenReturn(response)
 
-            presenter.getEventLastMatch(id)
+            presenter.getNextEventMatch(id)
 
             verify(view).showLoading()
-            verify(view).showMatchEvent(event)
+            verify(view).showNextEventMatch(event)
             verify(view).hideLoading()
         }
-
     }
 }
