@@ -3,10 +3,11 @@ package com.badikirwan.dicoding.footballmatch.view.favoriteevent
 import android.content.Context
 import com.badikirwan.dicoding.footballmatch.db.database
 import com.badikirwan.dicoding.footballmatch.model.EventItem
+import com.badikirwan.dicoding.footballmatch.model.Team
 import org.jetbrains.anko.db.classParser
 import org.jetbrains.anko.db.select
 
-class FavoriteEventPresenter(private val view: FavoriteEventView) {
+class FavoritePresenter(private val view: FavoriteView) {
 
     fun getFavoriteEvent(context: Context) {
         view.showLoading()
@@ -25,6 +26,24 @@ class FavoriteEventPresenter(private val view: FavoriteEventView) {
         } else {
             view.showFavoriteEvent(eventItem)
         }
+    }
 
+    fun getFavoriteTeam(context: Context) {
+        view.showLoading()
+        val team: MutableList<Team> = mutableListOf()
+
+        context.database.use {
+            val result = select(Team.TABLE_TEAMS)
+            val favorite = result.parseList(classParser<Team>())
+            team.addAll(favorite)
+        }
+
+        view.hideLoading()
+
+        if (team.isEmpty()) {
+            view.showEmptyData()
+        } else {
+            view.showFavoriteTeam(team)
+        }
     }
 }

@@ -1,9 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:tools="http://schemas.android.com/tools"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent"
-             tools:context=".view.lastmatch.LastLastMatchFragment">
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" xmlns:app="http://schemas.android.com/apk/res-auto"
+                tools:context=".view.lastmatch.LastMatchFragment">
+
+    <LinearLayout
+            android:id="@+id/spinner_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorAccentDark"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <Spinner
+                android:id="@+id/spinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="8dp" />
+    </LinearLayout>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_below="@id/spinner_container">
+
+        <android.support.v7.widget.RecyclerView
+                android:id="@+id/recycle_last_match"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="invisible"/>
+    </LinearLayout>
 
     <ProgressBar
             android:id="@+id/prog_last_match"
@@ -11,9 +38,4 @@
             android:layout_height="50dp"
             android:layout_centerInParent="true"/>
 
-    <android.support.v7.widget.RecyclerView
-            android:id="@+id/recycle_last_match"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:visibility="invisible"/>
 </RelativeLayout>

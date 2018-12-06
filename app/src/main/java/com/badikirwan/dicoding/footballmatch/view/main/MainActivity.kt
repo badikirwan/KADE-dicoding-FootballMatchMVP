@@ -4,9 +4,8 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.badikirwan.dicoding.footballmatch.R
 import com.badikirwan.dicoding.footballmatch.R.id.*
-import com.badikirwan.dicoding.footballmatch.view.favoriteevent.FavoriteEventFragment
-import com.badikirwan.dicoding.footballmatch.view.lastmatch.LastLastMatchFragment
-import com.badikirwan.dicoding.footballmatch.view.nextmatch.NextMatchFragment
+import com.badikirwan.dicoding.footballmatch.view.favoriteevent.FavoriteFragment
+import com.badikirwan.dicoding.footballmatch.view.team.TeamsFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -18,7 +17,7 @@ class MainActivity : AppCompatActivity() {
         bottom_navigation.setOnNavigationItemSelectedListener { menuItem ->
             when(menuItem.itemId) {
                 menu_last_match -> {
-                    loadLastMatchFragment(savedInstanceState)
+                    loadHomeMatchFragment(savedInstanceState)
                 }
 
                 menu_next_match -> {
@@ -34,10 +33,10 @@ class MainActivity : AppCompatActivity() {
         bottom_navigation.selectedItemId = menu_last_match
     }
 
-    private fun loadLastMatchFragment(savedInstanceState: Bundle?) {
+    private fun loadHomeMatchFragment(savedInstanceState: Bundle?) {
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
-                .replace(R.id.main_container, LastLastMatchFragment(), LastLastMatchFragment::class.java.simpleName)
+                .replace(R.id.main_container, HomeMatchFragment(), HomeMatchFragment::class.java.simpleName)
                 .commit()
         }
     }
@@ -45,7 +44,7 @@ class MainActivity : AppCompatActivity() {
     private fun loadNextMatchFragment(savedInstanceState: Bundle?) {
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
-                .replace(R.id.main_container, NextMatchFragment(), NextMatchFragment::class.java.simpleName)
+                .replace(R.id.main_container, TeamsFragment(), TeamsFragment::class.java.simpleName)
                 .commit()
         }
     }
@@ -53,7 +52,7 @@ class MainActivity : AppCompatActivity() {
     private fun loadFavoriteFragment(savedInstanceState: Bundle?) {
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
-                .replace(R.id.main_container, FavoriteEventFragment(), FavoriteEventFragment::class.java.simpleName)
+                .replace(R.id.main_container, FavoriteFragment(), FavoriteFragment::class.java.simpleName)
                 .commit()
         }
     }

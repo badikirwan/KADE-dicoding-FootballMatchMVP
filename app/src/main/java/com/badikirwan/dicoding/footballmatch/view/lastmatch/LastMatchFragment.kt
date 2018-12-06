@@ -8,17 +8,22 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import com.badikirwan.dicoding.footballmatch.R
 import com.badikirwan.dicoding.footballmatch.adapter.MatchAdapter
 import com.badikirwan.dicoding.footballmatch.api.ApiRepository
 import com.badikirwan.dicoding.footballmatch.model.EventItem
+import com.badikirwan.dicoding.footballmatch.model.League
+import com.badikirwan.dicoding.footballmatch.model.LeagueResponse
 import com.badikirwan.dicoding.footballmatch.view.detail.DetailActivity
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.fragment_last_match.*
 
-class LastLastMatchFragment : Fragment(), LastMatchView {
+class LastMatchFragment : Fragment(), LastMatchView {
 
     private val data: MutableList<EventItem> = mutableListOf()
+    private lateinit var league: League
     private lateinit var presenter: LastMatchPresenter
     private lateinit var adapter: MatchAdapter
     private lateinit var recyclerView: RecyclerView
@@ -44,7 +49,7 @@ class LastLastMatchFragment : Fragment(), LastMatchView {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        presenter.getEventLastMatch("4328")
+        presenter.getLeague()
     }
 
     override fun showLoading() {
@@ -61,6 +66,22 @@ class LastLastMatchFragment : Fragment(), LastMatchView {
         data.clear()
         data.addAll(eventItem)
         adapter.notifyDataSetChanged()
+    }
+
+    override fun showListLeague(data: LeagueResponse) {
+        spinner.adapter = ArrayAdapter(context, R.layout.support_simple_spinner_dropdown_item, data.league)
+        spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+
+            }
+
+            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+                league = spinner.selectedItem as League
+                presenter.getEventLastMatch(league.idLeague.toString())
+            }
+
+        }
     }
 
 }

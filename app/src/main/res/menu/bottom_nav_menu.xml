@@ -3,14 +3,14 @@
     <item
             android:id="@+id/menu_last_match"
             android:enabled="true"
-            android:title="@string/last_match"
+            android:title="@string/match"
             android:icon="@drawable/ic_last_match"
             app:showAsAction="ifRoom"/>
     <item
             android:id="@+id/menu_next_match"
             android:enabled="true"
-            android:title="@string/next_match"
-            android:icon="@drawable/ic_next_match"
+            android:title="@string/teams"
+            android:icon="@drawable/ic_teams"
             app:showAsAction="ifRoom"/>
     <item
             android:id="@+id/menu_favorite"

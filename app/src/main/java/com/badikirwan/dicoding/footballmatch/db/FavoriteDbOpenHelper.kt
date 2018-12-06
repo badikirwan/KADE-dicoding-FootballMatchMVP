@@ -3,10 +3,11 @@ package com.badikirwan.dicoding.footballmatch.db
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import com.badikirwan.dicoding.footballmatch.model.EventItem
+import com.badikirwan.dicoding.footballmatch.model.Team
 import org.jetbrains.anko.db.*
 
 class FavoriteDbOpenHelper(context: Context) :
-    ManagedSQLiteOpenHelper(context, "FavoriteEvent.db", null, 1) {
+    ManagedSQLiteOpenHelper(context, "FootBall.db", null, 1) {
 
     companion object {
         private var instance: FavoriteDbOpenHelper? = null
@@ -47,10 +48,21 @@ class FavoriteDbOpenHelper(context: Context) :
             EventItem.AWAY_LINEUP_FORWARD to TEXT,
             EventItem.AWAY_LINEUP_SUBSTITUTES to TEXT
         )
+
+        db?.createTable(Team.TABLE_TEAMS, true,
+            Team.ID to INTEGER + PRIMARY_KEY + AUTOINCREMENT,
+            Team.ID_TEAM to TEXT,
+            Team.TEAM_BADGE to TEXT,
+            Team.TEAM to TEXT,
+            Team.FORMED_YEAR to TEXT,
+            Team.STADIUM to TEXT,
+            Team.DESCRIPTION to TEXT
+        )
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
         db?.dropTable(EventItem.TABLE_FAVORITES, true)
+        db?.dropTable(Team.TABLE_TEAMS, true)
     }
 }
 
